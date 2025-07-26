@@ -32,6 +32,31 @@ println!("name is {}", name);
 /* 
 We can define generics type for the input argument to prevent code repetition or something like the same scenario
 */
+
+// TRAITS
+/* 
+
+    Traits is something like interface in other languages like javascript
+    eg :: pub trait Summary {
+    fn summarize(&self) -> String;
+    }
+*/
+
+trait Summary{
+    fn summarize(&self) -> String;
+}
+
+struct User {
+    name: String,
+    age: u32,
+}
+
+impl Summary for User {
+    fn summarize(&self) -> String {
+        return format!("The name of the user is {} and the age is {}", self.name, self.age);
+    }
+}
+
 fn main() {
     let name = String::from("hello world");
     let ans = first_word(str:name);
@@ -48,7 +73,18 @@ fn main() {
     let bigger_char = largest(a,b);
     println!("Bigger number is :: {}",bigger);
     println!("Bigger char is :: {}",bigger_char);
+
+// TRAITS
+    let user = User{
+        name: String::from("yash"),
+        age: 22,
+    }
+    println!("{}", user.summarize());
 }
+
+
+
+
 
 fn largest<T: std::cmp::PartialOrd>(a:T, b:T) -> T {
     if a > b {
